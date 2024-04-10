@@ -32,9 +32,7 @@ class _NameInputState extends State<NameInput> {
               onPressed: state is AgeEstimationLoading
                   ? null
                   : () {
-                      context
-                          .read<AgeEstimationCubit>()
-                          .onNameSubmitted(_nameController.text);
+                      _onSubmitNamePressed(context);
                     },
               icon: const Icon(Icons.search),
             );
@@ -42,6 +40,12 @@ class _NameInputState extends State<NameInput> {
         ),
       ],
     );
+  }
+
+  void _onSubmitNamePressed(BuildContext context) {
+    // Unfocus closes the keyboard automatically.
+    FocusManager.instance.primaryFocus?.unfocus();
+    context.read<AgeEstimationCubit>().onNameSubmitted(_nameController.text);
   }
 
   @override
