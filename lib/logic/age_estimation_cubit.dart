@@ -2,7 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../data/age_estimation_repository.dart';
-import '../data/models/age_estimation.dart';
+import '../data/models/age_estimate.dart';
 
 part 'age_estimation_state.dart';
 
@@ -14,7 +14,7 @@ class AgeEstimationCubit extends Cubit<AgeEstimationState> {
   Future<void> onNameSubmitted(String name) async {
     emit(AgeEstimationLoading());
 
-    final result = await _repository.requestAgeEstimation(name);
+    final result = await _repository.estimateAge(name);
 
     if (result == null) {
       emit(AgeEstimationFailed());

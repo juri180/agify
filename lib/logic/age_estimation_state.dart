@@ -12,12 +12,12 @@ final class AgeEstimationInitial extends AgeEstimationState {}
 final class AgeEstimationLoading extends AgeEstimationState {}
 
 final class AgeEstimationSuccessful extends AgeEstimationState {
-  final AgeEstimation estimation;
+  final AgeEstimate estimate;
 
-  const AgeEstimationSuccessful(this.estimation);
+  const AgeEstimationSuccessful(this.estimate);
 
   @override
-  List<Object> get props => [estimation];
+  List<Object> get props => [estimate];
 }
 
 final class AgeEstimationFailed extends AgeEstimationState {}

@@ -1,10 +1,10 @@
 import 'package:equatable/equatable.dart';
 
-class AgeEstimation extends Equatable {
+class AgeEstimate extends Equatable {
   final String name;
   final int age;
 
-  const AgeEstimation({required this.name, required this.age});
+  const AgeEstimate({required this.name, required this.age});
 
   @override
   List<Object> get props => [name, age];

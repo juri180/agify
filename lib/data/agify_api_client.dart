@@ -7,7 +7,7 @@ class AgifyApi {
 
   const AgifyApi();
 
-  Future<Map<String, dynamic>?> requestAgeEstimation(String name) async {
+  Future<Map<String, dynamic>?> requestAgeEstimate(String name) async {
     final request = Uri.https(_baseUrl, '', {'name': name});
 
     final response = await http.get(request);
