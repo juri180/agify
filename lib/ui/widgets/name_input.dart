@@ -20,6 +20,9 @@ class _NameInputState extends State<NameInput> {
         Expanded(
           child: TextField(
             controller: _nameController,
+            onSubmitted: (text) {
+              context.read<AgeEstimationCubit>().onNameSubmitted(text);
+            },
             decoration: const InputDecoration(
               hintText: 'First or full name',
             ),
@@ -29,12 +32,12 @@ class _NameInputState extends State<NameInput> {
         BlocBuilder<AgeEstimationCubit, AgeEstimationState>(
           builder: (context, state) {
             return IconButton.filled(
+              icon: const Icon(Icons.search),
               onPressed: state is AgeEstimationLoading
                   ? null
                   : () {
                       _onSubmitNamePressed(context);
                     },
-              icon: const Icon(Icons.search),
             );
           },
         ),
