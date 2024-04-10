@@ -2,7 +2,7 @@ import 'agify_api_client.dart';
 import 'models/age_estimate.dart';
 
 class AgeEstimationRepository {
-  static const _api = AgifyApi();
+  static const _api = AgifyApiClient();
 
   const AgeEstimationRepository();
 

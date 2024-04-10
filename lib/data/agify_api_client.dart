@@ -2,10 +2,10 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-class AgifyApi {
+class AgifyApiClient {
   static const _baseUrl = 'api.agify.io';
 
-  const AgifyApi();
+  const AgifyApiClient();
 
   Future<Map<String, dynamic>?> requestAgeEstimate(String name) async {
     final request = Uri.https(_baseUrl, '', {'name': name});
