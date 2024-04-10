@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class AgifyApi {
-  static const _baseUrl = 'https://api.agify.io';
+  static const _baseUrl = 'api.agify.io';
 
   const AgifyApi();
 
