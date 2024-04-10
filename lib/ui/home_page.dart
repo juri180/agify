@@ -3,16 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../logic/age_estimation_cubit.dart';
 import 'widgets/estimation_result.dart';
+import 'widgets/name_input.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   const HomePage({super.key});
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  final _nameController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -35,33 +29,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                   ),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: TextField(
-                          controller: _nameController,
-                          decoration: const InputDecoration(
-                            hintText: 'First or full name',
-                          ),
-                        ),
-                      ),
-                      const SizedBox(width: 16),
-                      BlocBuilder<AgeEstimationCubit, AgeEstimationState>(
-                        builder: (context, state) {
-                          return IconButton.filled(
-                            onPressed: state is AgeEstimationLoading
-                                ? null
-                                : () {
-                                    context
-                                        .read<AgeEstimationCubit>()
-                                        .onNameSubmitted(_nameController.text);
-                                  },
-                            icon: const Icon(Icons.search),
-                          );
-                        },
-                      ),
-                    ],
-                  ),
+                  const NameInput(),
                   const Expanded(
                     child: Padding(
                       padding: EdgeInsets.only(top: 16),
@@ -78,11 +46,5 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _nameController.dispose();
-    super.dispose();
   }
 }
