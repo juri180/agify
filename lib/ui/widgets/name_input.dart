@@ -20,8 +20,8 @@ class _NameInputState extends State<NameInput> {
         Expanded(
           child: TextField(
             controller: _nameController,
-            onSubmitted: (text) {
-              context.read<AgeEstimationCubit>().onNameSubmitted(text);
+            onSubmitted: (_) {
+              _onKeyboardSubmitPressed(context);
             },
             decoration: const InputDecoration(
               hintText: 'First or full name',
@@ -36,7 +36,7 @@ class _NameInputState extends State<NameInput> {
               onPressed: state is AgeEstimationLoading
                   ? null
                   : () {
-                      _onSubmitNamePressed(context);
+                      _onSubmitButtonPressed(context);
                     },
             );
           },
@@ -45,10 +45,26 @@ class _NameInputState extends State<NameInput> {
     );
   }
 
-  void _onSubmitNamePressed(BuildContext context) {
+  void _onKeyboardSubmitPressed(BuildContext context) {
+    if (_nameController.text.isNotEmpty) {
+      context.read<AgeEstimationCubit>().onNameSubmitted(_nameController.text);
+    }
+  }
+
+  void _onSubmitButtonPressed(BuildContext context) {
+    if (_nameController.text.isEmpty) {
+      _showEmptyNameSnackBar();
+      return;
+    }
+
     // Unfocus closes the keyboard automatically.
     FocusManager.instance.primaryFocus?.unfocus();
     context.read<AgeEstimationCubit>().onNameSubmitted(_nameController.text);
+  }
+
+  void _showEmptyNameSnackBar() {
+    const snackBar = SnackBar(content: Text('Pleaser enter a name first.'));
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 
   @override
