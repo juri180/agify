@@ -6,6 +6,10 @@ class AgeEstimate extends Equatable {
 
   const AgeEstimate({required this.name, required this.age});
 
+  AgeEstimate.fromJson(Map<String, dynamic> json)
+      : name = json['name'],
+        age = json['age'];
+
   @override
   List<Object?> get props => [name, age];
 }

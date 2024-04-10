@@ -7,10 +7,10 @@ class AgeEstimationRepository {
   const AgeEstimationRepository();
 
   Future<AgeEstimate?> estimateAge(String name) async {
-    final bodyJson = await _api.requestAgeEstimate(name);
+    final json = await _api.requestAgeEstimate(name);
 
-    if (bodyJson != null) {
-      return AgeEstimate(name: bodyJson['name'], age: bodyJson['age']);
+    if (json != null) {
+      return AgeEstimate.fromJson(json);
     }
 
     return null;
