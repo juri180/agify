@@ -4,9 +4,10 @@ import 'models/estimation_failure.dart';
 
 /// This repository serves as an interface to abstract the data provider.
 class AgeEstimationRepository {
-  static const _api = AgifyApiClient();
+  final AgifyApiClient _api;
 
-  const AgeEstimationRepository();
+  AgeEstimationRepository({AgifyApiClient? api})
+      : _api = api ?? AgifyApiClient();
 
   /// Estimates the age of a person by name.
   ///

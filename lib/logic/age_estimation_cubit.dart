@@ -8,7 +8,7 @@ import '../data/models/estimation_failure.dart';
 part 'age_estimation_state.dart';
 
 class AgeEstimationCubit extends Cubit<AgeEstimationState> {
-  final _repository = const AgeEstimationRepository();
+  final _repository = AgeEstimationRepository();
 
   AgeEstimationCubit() : super(AgeEstimationInitial());
 
