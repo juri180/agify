@@ -20,4 +20,11 @@ final class AgeEstimationSuccessful extends AgeEstimationState {
   List<Object> get props => [estimate];
 }
 
-final class AgeEstimationFailed extends AgeEstimationState {}
+final class AgeEstimationFailed extends AgeEstimationState {
+  final EstimationFailure failure;
+
+  const AgeEstimationFailed(this.failure);
+
+  @override
+  List<Object> get props => [failure];
+}

@@ -1,18 +1,21 @@
 import 'agify_api_client.dart';
 import 'models/age_estimate.dart';
+import 'models/estimation_failure.dart';
 
 class AgeEstimationRepository {
   static const _api = AgifyApiClient();
 
   const AgeEstimationRepository();
 
-  Future<AgeEstimate?> estimateAge(String name) async {
+  Future<AgeEstimate> estimateAge(String name) async {
     final json = await _api.requestAgeEstimate(name);
 
-    if (json != null) {
+    try {
       return AgeEstimate.fromJson(json);
+    } on TypeError {
+      throw const EstimationFailure(
+        'Bad response format. Please report this error.',
+      );
     }
-
-    return null;
   }
 }

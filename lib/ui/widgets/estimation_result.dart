@@ -17,10 +17,7 @@ class EstimationResult extends StatelessWidget {
             style: Theme.of(context).textTheme.bodyLarge,
           );
         } else if (state is AgeEstimationFailed) {
-          return const Text(
-            'Estimation failed. Please check your network status and try '
-            'again.',
-          );
+          return Text(state.failure.description);
         } else if (state is AgeEstimationLoading) {
           return const CircularProgressIndicator();
         } else {
