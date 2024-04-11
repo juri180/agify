@@ -18,28 +18,47 @@ class _NameInputState extends State<NameInput> {
     return Row(
       children: [
         Expanded(
-          child: TextField(
-            controller: _nameController,
-            onSubmitted: (_) {
-              _onKeyboardSubmitPressed(context);
-            },
-            decoration: const InputDecoration(
-              hintText: 'First or full name',
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(8),
+              boxShadow: _shadow,
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+              child: TextField(
+                controller: _nameController,
+                style: Theme.of(context).textTheme.titleLarge,
+                textCapitalization: TextCapitalization.words,
+                onSubmitted: (_) {
+                  _onKeyboardSubmitPressed(context);
+                },
+                decoration: const InputDecoration.collapsed(
+                  hintText: 'First or full name',
+                ),
+              ),
             ),
           ),
         ),
-        const SizedBox(width: 16),
-        BlocBuilder<AgeEstimationCubit, AgeEstimationState>(
-          builder: (context, state) {
-            return IconButton.filled(
-              icon: const Icon(Icons.search),
-              onPressed: state is AgeEstimationLoading
-                  ? null
-                  : () {
-                      _onSubmitButtonPressed(context);
-                    },
-            );
-          },
+        const SizedBox(width: 8),
+        Container(
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            boxShadow: _shadow,
+          ),
+          child: BlocBuilder<AgeEstimationCubit, AgeEstimationState>(
+            builder: (context, state) {
+              return IconButton.filled(
+                iconSize: 30,
+                icon: const Icon(Icons.search),
+                onPressed: state is AgeEstimationLoading
+                    ? null
+                    : () {
+                        _onSubmitButtonPressed(context);
+                      },
+              );
+            },
+          ),
         ),
       ],
     );
@@ -65,6 +84,17 @@ class _NameInputState extends State<NameInput> {
   void _showEmptyNameSnackBar() {
     const snackBar = SnackBar(content: Text('Pleaser enter a name first.'));
     ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+
+  List<BoxShadow> get _shadow {
+    return const [
+      BoxShadow(
+        color: Colors.black38,
+        spreadRadius: 0,
+        blurRadius: 4,
+        offset: Offset(0, 2),
+      ),
+    ];
   }
 
   @override

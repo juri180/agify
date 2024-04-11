@@ -12,36 +12,48 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(32),
-          child: Center(
-            child: BlocProvider<AgeEstimationCubit>(
-              create: (_) => AgeEstimationCubit(),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Expanded(
-                    child: Center(
-                      child: Text(
-                        'Estimate the Age\nof a Name',
-                        style: Theme.of(context).textTheme.headlineLarge,
-                        textAlign: TextAlign.center,
+        child: BlocProvider<AgeEstimationCubit>(
+          create: (_) => AgeEstimationCubit(),
+          child: CustomScrollView(
+            physics: const ClampingScrollPhysics(),
+            slivers: [
+              SliverFillRemaining(
+                hasScrollBody: false,
+                child: Padding(
+                  padding: const EdgeInsets.all(32),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Expanded(
+                        child: Center(
+                          child: Text(
+                            'Estimate the Age\nof a Name',
+                            style: Theme.of(context).textTheme.headlineLarge,
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                  const NameInput(),
-                  const Expanded(
-                    child: Padding(
-                      padding: EdgeInsets.only(top: 16),
-                      child: Align(
-                        alignment: Alignment.topCenter,
-                        child: EstimationResult(),
+                      const Expanded(
+                        child: Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Align(
+                                alignment: Alignment.topCenter,
+                                child: EstimationResult(),
+                              ),
+                              SizedBox(height: 16),
+                              NameInput(),
+                            ],
+                          ),
+                        ),
                       ),
-                    ),
+                    ],
                   ),
-                ],
+                ),
               ),
-            ),
+            ],
           ),
         ),
       ),

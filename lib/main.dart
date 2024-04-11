@@ -14,7 +14,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Agify',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.deepPurple,
+          background: const Color(0xfff5f5f5),
+        ),
+        fontFamily: 'Roboto Mono',
       ),
       home: const HomePage(),
     );

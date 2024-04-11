@@ -32,6 +32,6 @@ class EstimationResult extends StatelessWidget {
       return 'Uh oh. ${estimate.name} is unknown to us.';
     }
 
-    return '${estimate.name} is ${estimate.age} years old';
+    return '${estimate.name} is ${estimate.age} years old.';
   }
 }
