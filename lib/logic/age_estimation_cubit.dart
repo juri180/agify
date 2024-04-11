@@ -8,9 +8,11 @@ import '../data/models/estimation_failure.dart';
 part 'age_estimation_state.dart';
 
 class AgeEstimationCubit extends Cubit<AgeEstimationState> {
-  final _repository = AgeEstimationRepository();
+  final AgeEstimationRepository _repository;
 
-  AgeEstimationCubit() : super(AgeEstimationInitial());
+  AgeEstimationCubit({AgeEstimationRepository? repository})
+      : _repository = repository ?? AgeEstimationRepository(),
+        super(AgeEstimationInitial());
 
   Future<void> onNameSubmitted(String name) async {
     emit(AgeEstimationLoading());
